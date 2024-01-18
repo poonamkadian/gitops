@@ -1,0 +1,31 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          name: {{ .Release.Name }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+            - containerPort: 9090
+              protocol: TCP
+          env:
+            - name: VOTING_API_SERVICE_HOST
+              value: vote-api
+            - name: VOTING_API_SERVICE_PORT
+              value: "9000"
