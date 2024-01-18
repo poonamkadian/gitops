@@ -5,9 +5,14 @@ metadata:
     app: vote-ui
   name: vote-ui
 spec:
-  port:
-    targetPort: 8080-tcp
-  to:
-    kind: Service
-    name: vote-ui
-    weight: 100
+  host: vote-ui-microservices.apps-crc.testing
+    port:
+      targetPort: 8080-tcp
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    to:
+      kind: Service
+      name: vote-ui
+      weight: 100
+    wildcardPolicy: None
