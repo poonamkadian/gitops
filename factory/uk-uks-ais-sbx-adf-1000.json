@@ -1,0 +1,9 @@
+{
+	"name": "uk-uks-ais-sbx-adf-1000",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3cae716b-fce8-41e7-a3a2-9d7069a31748",
+		"tenantId": "fbd88c40-d25c-40f9-978f-1a689d61685e"
+	}
+}
